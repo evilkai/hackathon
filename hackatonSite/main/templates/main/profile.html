@@ -1,0 +1,82 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Профиль
+{% endblock %}
+
+{% block content %}
+{% load static %}
+{% if not user.is_staff or user.is_superuser%}
+<div class="container">
+
+    <div class="row  justify-content-right">
+        <div   style="width: 20%;">
+                <img src="{% static 'images/student.jpg' %}" alt="something" width=200px>
+        </div>
+            <div   style="width: 5%;">
+            </div>
+
+    <div   style="width: 75%;">
+        <h3>{{ student.fullname }}</h3>
+        <h4>Направление: {{ student.direction }}</h4>
+        <h4>Группа: {{ student.group }}</h4>
+        <h4>Форма обучения: {{student.form}} ({{student.basis}})</h4>
+        <h4>Студенческий билет: {{student.studentID}}</h4>
+
+
+        <br> <a class="btn btn-secondary" href="{% url 'certificateStudy' %}">Справка об обучении</a> <br> 
+
+        <br> <a class="btn btn-secondary" href="{% url 'certificateStipend' %}">Справка о доходах</a> <br> 
+        
+        
+        
+        <br> <a class="btn btn-danger" href="{% url 'logout' %}">Выйти</a>
+
+
+    </div>
+
+
+
+    
+
+</div>
+
+{% else %}
+
+
+<div class="container">
+
+    <div class="row  justify-content-right">
+        <div   style="width: 20%;">
+                <img src="{% static 'images/staff.jpg' %}" alt="something" width=200px>
+        </div>
+            <div   style="width: 5%;">
+            </div>
+
+    <div   style="width: 75%;">
+        <h3>{{ user.last_name }} {{ user.first_name }}</h3>
+        <h4 class="text-secondary">Работник студенческого офиса</h4>
+
+
+        <br> <a class="btn btn-secondary" href="{% url 'createad' %}">Создать объявление</a> <br> 
+
+
+
+        <br> <a class="btn btn-danger" href="{% url 'logout' %}">Выйти</a>
+
+
+    </div>
+
+
+
+    
+
+
+
+</div>
+
+{% endif %}
+
+
+</div>
+{% endblock %}

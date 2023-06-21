@@ -1,0 +1,45 @@
+{% extends 'main/base.html' %}
+
+
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block content %}
+{% load static %}
+    
+{% csrf_token %}
+
+
+<div class="container" style="width:100%; padding: 0% 10%;">
+    
+<h1>Новости:</h1>
+    {% for el in ads %}
+        
+                
+        <div class="mt-2">
+        
+            
+        <hr class="featurette-divider">
+            
+        <h3 class="text-primary">{{ el.title }}</h3>
+            
+        <p>{{el.description}}</p>
+        <p>Дата публикации: {{el.date}}</p>
+            
+        </div>
+
+        <form id="nubexForm" method="post"  style="padding-left: 85%;">
+            {% csrf_token %}
+            <a class="btn btn-secondary" href="{% url 'adpage' el.id %}">Подробнее</a>
+        </form>
+
+    {% endfor %}
+
+
+
+</div>
+    
+
+{% endblock %}

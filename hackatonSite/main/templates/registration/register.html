@@ -1,0 +1,72 @@
+{% extends "main/base.html" %}
+
+
+{% block title %}Регистрация{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="conteiner">
+    <div class="row justify-content-md-center" style="width:100%; padding: 0% 20%;">
+
+    <form method="POST"  class="form-group justify-content-center">
+	{% csrf_token %}
+
+    <div class="form-group">
+
+        {% if signal == 1 %}
+        <div class="alert alert-danger" role="alert">
+          Неверный номер студенческого билета
+        </div>
+        {% endif %}
+
+        {% if signal == 2 %}
+        <div class="alert alert-danger" role="alert">
+          Пароли не совпали
+        </div>
+        {% endif %}
+
+        {% if signal == 3 %}
+        <div class="alert alert-danger" role="alert">
+          Пользователь уже зарегестрирован
+        </div>
+        {% endif %}
+
+
+
+
+        
+          <label>Заполните данные: </label>
+          
+          
+          <div class="row">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Логин" name="login">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Номер студенческого" name="studentID">
+            </div>
+          </div>
+<br>
+
+          <div class="row">
+            <div class="col">
+                <input type="password" class="form-control" id="inputPassword4" placeholder="Пароль" name="password1">
+            </div>
+            <div class="col">
+                <input type="password" class="form-control" id="inputPassword4" placeholder="Повтор пароля" name="password2">
+            </div>
+          </div>
+          
+      
+    
+        </div>
+    
+    <br>
+
+
+
+
+	    <button type="submit" class="btn btn-success">Создать аккаунт</button>
+    </form>
+</div></div>
+{% endblock %}

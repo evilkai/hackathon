@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Новостная страница
+{% endblock %}
+
+{% block content %}
+
+
+
+
+
+<div class="container" style="width:100%; padding: 0% 20%;">
+    <h2 class="text-secondary">{{ page.title }}</h2>
+    
+    <br>
+    <br>
+
+    <p> {{ page.description }} </p>
+
+
+    <br>
+    <p> Дата публикации: {{ page.date }} </p>
+    
+    <br>
+    {% if user.is_staff and not user.is_superuser %}
+    
+    <form action="" id="nubexForm" method="get"  style="padding-left: 85%;">
+        {% csrf_token %}
+        <input class="btn btn-danger" type="submit" name="delete" value="Удалить" href="{% url 'home' %}"><br>
+    </form>
+
+    {% endif %}
+    
+
+</div>
+{% endblock %} 
