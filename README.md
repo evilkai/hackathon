@@ -1,2 +1,2 @@
 # hackathon
-My hackathon project
+My hackathon project.
